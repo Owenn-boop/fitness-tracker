@@ -1,7 +1,13 @@
 import { ThemeProvider, styled } from "styled-components";
 import { lightTheme } from "./utils/Themes";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Authentication from "./pages/Authentication";
+//import { useState } from "react";
+import { useSelector} from "react-redux";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Workouts from "./pages/Workouts";
+
 
 const Container = styled.div`
     width: 100%;
@@ -16,12 +22,22 @@ const Container = styled.div`
 `;
 
 function App() {
+    const { currentUser } = useSelector((state) => state.user);
     return (
         <ThemeProvider theme={lightTheme}>
             <BrowserRouter>
+                {currentUser ? ( <Container>
+                    <Navbar currentUser= {currentUser} />
+                    <Routes>
+                        <Route path="/" exact element={<Dashboard />} />
+                        <Route path="/workouts" exact element={<Workouts />} />
+                    </Routes>
+                </Container>
+                 ) : (
                 <Container>
                     <Authentication />
                 </Container>
+                 )}
             </BrowserRouter>
         </ThemeProvider>
     );
