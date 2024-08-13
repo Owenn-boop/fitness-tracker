@@ -57,3 +57,47 @@ export const UserLogin= async (req, res, next) => {
         next(error);
     }
 };
+
+const getUserDashboard = async(req, res, next) => {
+    try {
+        const userId = req.user?.id;
+        const user = await User.findById(userId);
+        if (!user) {
+            return next(createError(404, "User not found!"))
+        }
+
+        const currentDateFormatted = new Date();
+        const startToday = new Date(
+            currentDateFormatted.getFullYear(),
+            currentDateFormatted.getMonth(),
+            currentDateFormat.getDate() +1
+        );
+        const endToday = new Date(
+            currentDateFormatted.getFullYear(),
+            currentDateFormatted.getMonth(),
+            currentDateFormat.getDate() +1  
+        );
+
+        //calculate total calories burned
+        const totalCaloriesBurnt = await Workout.aggregate([
+            { $match: { user: user._id, date: { $gte: startToday, $lt: endToday } } },
+            {
+              $group: {
+                _id: null,
+                totalCaloriesBurnt: { $sum: "$caloriesBurned" },
+              },
+            },
+          ]);
+
+        //Calculate total no of workouts
+        const totalWorkouts = await Workout.countDocuments({
+            user: userId,
+            date: { $gte: startToday, $lt: endToday },
+        });
+
+        
+
+    } catch(err){
+        next(err);
+    }
+};
