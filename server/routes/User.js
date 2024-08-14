@@ -1,4 +1,3 @@
-import express from "express"
 import {
     UserLogin,
     UserRegister,
@@ -7,6 +6,8 @@ import {
     getWorkoutsByDate,
   } from "../controllers/User.js";
   import { verifyToken } from "../middleware/verifyToken.js";
+import express from "express";
+//import { UserRegister, UserLogin } from "../controllers/User.js"; // Correct import
 
 const router = express.Router();
 

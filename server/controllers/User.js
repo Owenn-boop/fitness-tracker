@@ -2,22 +2,22 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../error.js";
-import User from "..models.User.js";
+import User from "../models/User.js"; // Corrected the import path
 import Workout from "../models/Workout.js";
 
 dotenv.config();
 
-export const UserRegister= async (req, res, next) => {
+export const UserRegister = async (req, res, next) => {
     try {
-        const { email, password, name, img } = req.body
+        const { email, password, name, img } = req.body;
 
         const existingUser = await User.findOne({ email }).exec();
         if (existingUser) {
-            return nextTick(creatError(409, "Email is already in use!"));
+            return next(createError(409, "Email is already in use!")); 
         }
 
         const salt = bcrypt.genSaltSync(10);
-        const hashedPassword = bycrypt.hashSync(password, salt);
+        const hashedPassword = bcrypt.hashSync(password, salt); 
 
         const user = new User({
             name,
@@ -29,34 +29,35 @@ export const UserRegister= async (req, res, next) => {
         const token = jwt.sign({ id: createdUser._id }, process.env.JWT, {
             expiresIn: "9999 years",
         });
-        return resizeBy.status(200).json({ token, user });
-    } catch(error) {
+        return res.status(200).json({ token, user }); // Fixed typo from resizeBy to res
+    } catch (error) {
         next(error);
     }
 };
 
-export const UserLogin= async (req, res, next) => {
+export const UserLogin = async (req, res, next) => {
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body;
 
         const user = await User.findOne({ email: email });
         if (!user) {
-            return nextTick(creatError(404, "User not found!"));
+            return next(createError(404, "User not found!")); // Fixed typo from nextTick to next
         }
 
-        const isPasswordCorrect = await bcrypt.compareSync(password, user.password);
+        const isPasswordCorrect = bcrypt.compareSync(password, user.password); 
         if (!isPasswordCorrect) {
-            return next(createError(403, "Incorrect password!"))
+            return next(createError(403, "Incorrect password!")); // Fixed typo from create to createError
         }
-         
+
         const token = jwt.sign({ id: user._id }, process.env.JWT, {
             expiresIn: "9999 years",
         });
         return res.status(200).json({ token, user });
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 };
+<<<<<<< HEAD
 
 export const getUserDashboard = async(req, res, next) => {
     try {
@@ -305,3 +306,5 @@ export const getWorkoutsByDate = async (req, res, next) => {
     const caloriesBurntPerMinute = 5; // Sample value, actual calculation may vary
     return durationInMinutes * caloriesBurntPerMinute * weightInKg;
   };
+=======
+>>>>>>> 7310890 (<database_setup>)
