@@ -5,7 +5,7 @@ import {
     getUserDashboard,
     getWorkoutsByDate,
   } from "../controllers/User.js";
-  import { verifyToken } from "../middleware/verifyToken.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 import express from "express";
 //import { UserRegister, UserLogin } from "../controllers/User.js"; // Correct import
 

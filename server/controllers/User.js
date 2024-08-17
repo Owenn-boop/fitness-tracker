@@ -57,7 +57,6 @@ export const UserLogin = async (req, res, next) => {
         next(error);
     }
 };
-<<<<<<< HEAD
 
 export const getUserDashboard = async(req, res, next) => {
     try {
@@ -306,5 +305,3 @@ export const getWorkoutsByDate = async (req, res, next) => {
     const caloriesBurntPerMinute = 5; // Sample value, actual calculation may vary
     return durationInMinutes * caloriesBurntPerMinute * weightInKg;
   };
-=======
->>>>>>> 7310890 (<database_setup>)
