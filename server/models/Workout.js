@@ -11,7 +11,7 @@ const WorkoutSchema = new mongoose.Schema(
         type: String,
         required: true,
     },
-    workoutname: {
+    workoutName: {
         type: String,
         required: true,
         unique: true,
