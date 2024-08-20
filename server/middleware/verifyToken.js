@@ -3,7 +3,7 @@ import { createError } from "../error.js";
 
 export const verifyToken = async (req, res, next) => {
     try {
-        if (!req.headers.autorization) {
+        if (!req.headers.authorization) {
             return next(createError(401, "You are not authenticated!"));
         }
 

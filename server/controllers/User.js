@@ -70,12 +70,12 @@ export const getUserDashboard = async(req, res, next) => {
         const startToday = new Date(
             currentDateFormatted.getFullYear(),
             currentDateFormatted.getMonth(),
-            currentDateFormat.getDate() +1
+            currentDateFormatted.getDate() +1
         );
         const endToday = new Date(
             currentDateFormatted.getFullYear(),
             currentDateFormatted.getMonth(),
-            currentDateFormat.getDate() +1  
+            currentDateFormatted.getDate() +1  
         );
 
         //calculate total calories burned
