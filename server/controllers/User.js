@@ -70,7 +70,7 @@ export const getUserDashboard = async(req, res, next) => {
         const startToday = new Date(
             currentDateFormatted.getFullYear(),
             currentDateFormatted.getMonth(),
-            currentDateFormatted.getDate() +1
+            currentDateFormatted.getDate()
         );
         const endToday = new Date(
             currentDateFormatted.getFullYear(),
@@ -94,6 +94,7 @@ export const getUserDashboard = async(req, res, next) => {
             user: userId,
             date: { $gte: startToday, $lt: endToday },
         });
+        console.log(totalWorkouts)
 
         //Calculate average calories burned per workout
         const avgCaloriesBurntPerWorkout = 
