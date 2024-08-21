@@ -15,4 +15,4 @@ Emmanuel Onung:
 http://linkedin.com/in/emmanuelonung
 
 Joshua Moaton:
-https://www.linkedin.com/in/joshua-moaton
+www.linkedin.com/in/joshua-moaton
