@@ -1,4 +1,4 @@
-# Team 21 project 3
+# Team 21 Project 3
 
 Project intro:
 In today’s fast-paced world, maintaining a healthy lifestyle can be challenging. The advent 
