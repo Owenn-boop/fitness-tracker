@@ -7,6 +7,7 @@ insights and motivation at our fingertips. To harness the power of this technolo
 embarking on an exciting journey to develop a comprehensive Fit Tracker web application.
 
 Alan Snyder:
+https://www.linkedin.com/in/alan-snyder-75086313b/
 
 Owenn Herrmann:
 https://www.linkedin.com/in/owennherrmann
